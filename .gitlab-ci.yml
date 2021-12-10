@@ -21,6 +21,7 @@ deploy_staging:
   script:
   - . ./overlays/staging/staging.env
   - *deploy_kubernetes
+  - cat base/namespace.yaml
 #  tags:
 #  - kubernetes
 #  - staging
