@@ -7,11 +7,9 @@ stages:
 # .gitlab-ci.yml is not affected
 .replace_env_vars: &replace_env_vars
   - >-
-    find . -iregex '.+\.ya?ml' -not -iname '.gitlab-ci.yaml'
-    -exec sh -c '
-        echo = {} =;
-        envsubst < {} | \
-        tee {}; echo "\n"' \;
+    find . -regex '.\+\.ya\?ml'
+           -not -name '.gitlab-ci.yml'
+           -exec sh -c 'echo "$(envsubst < {})" > {}' \;
 
 # Deploys to a Kubernetes cluster.
 #  must be set before calling this.
@@ -22,9 +20,7 @@ deploy_staging:
   stage: deploy
   script:
   - . ./overlays/staging/staging.env
-  - find . -regex '.+\.ya?ml' -not -iname '.gitlab-ci.yaml' -exec sh -c 'echo = {} =; envsubst < {} | \ tee {}; echo "\n"' \;
-  - cat base/namespace.yaml
-#  - *deploy_kubernetes
+  - *deploy_kubernetes
 #  tags:
 #  - kubernetes
 #  - staging
