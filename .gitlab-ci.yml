@@ -21,15 +21,17 @@ stages:
 deploy_staging:
   stage: deploy
   script:
-  - *deploy_kubernetes
-  tags:
-  - kubernetes
-  - staging
-
-deploy_production:
-  stage: deploy
-  script:
-  - *deploy_kubernetes
-  tags:
-  - kubernetes
-  - stagingr
+  - . overlays/staging.staging.env
+  - find . -regex '.+\.ya?ml' -not -iname '.gitlab-ci.yaml' -exec sh -c ' echo = {} =; envsubst < {} | \ tee {}; echo "\n"' \;
+#  - *deploy_kubernetes
+#  tags:
+#  - kubernetes
+#  - staging
+#
+#deploy_production:
+#  stage: deploy
+#  script:
+#  - *deploy_kubernetes
+#  tags:
+#  - kubernetes
+#  - stagingr
