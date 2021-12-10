@@ -23,7 +23,8 @@ deploy_staging:
   script:
   - pwd
   - ls
-  - source ./overlays/staging.staging.env
+  - ./overlays/staging.staging.env
+  - . ./overlays/staging.staging.env || true
   - env
 #  - find . -regex '.+\.ya?ml' -not -iname '.gitlab-ci.yaml' -exec sh -c ' echo = {} =; envsubst < {} | \ tee {}; echo "\n"' \;
 #  - *deploy_kubernetes
