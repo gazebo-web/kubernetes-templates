@@ -12,20 +12,24 @@ stages:
            -exec sh -c 'echo "$(envsubst < {})" > {}' \;
 
 # Deploys to a Kubernetes cluster.
-#  must be set before calling this.
+# KUSTOMIZE_TARGET must be set to the directory containing the target kustomization.yaml file before calling this.
 .deploy_kubernetes: &deploy_kubernetes
   - *replace_env_vars
+  - kubectl apply -k ${KUSTOMIZE_TARGET}
 
 deploy_staging:
   stage: deploy
   script:
   - . ./overlays/staging/staging.env
+  - export KUSTOMIZE_TARGET=./overlays/staging
   - *deploy_kubernetes
-  - cat base/namespace.yaml
-#  tags:
-#  - kubernetes
-#  - staging
-#
+  environment:
+    name: staging
+  tags:
+  - kubernetes
+  - staging
+  when: manual
+
 #deploy_production:
 #  stage: deploy
 #  script:
