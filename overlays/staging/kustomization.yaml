@@ -1,0 +1,7 @@
+resources:
+- ../../base
+
+# Optional patches you can apply to customize this environment.
+# patchesStrategicMerge:
+# Uncomment the following line to apply environment-specific changes to the env var configuration.
+# - env-vars.yaml

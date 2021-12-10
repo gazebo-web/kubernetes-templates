@@ -1,0 +1,25 @@
+resources:
+- git@gitlab.com:ignitionrobotics/continuous-deployment/kubernetes.git/base
+- namespace.yaml
+# Project environment variables
+# If the project does not have any environment variables, this can be commented out
+- env-vars.yaml
+
+# Set of labels to tag all resources with
+commonLabels:
+  # <REQUIRED> Application label.
+  app: #
+
+images:
+- name: image
+  # <REQUIRED> URL to the image to deploy. This image should ideally be produced by the project's CI pipeline.
+  newName: # registry.gitlab.com/project
+  # <REQUIRED> Version to deploy.
+  newTag: # 1.0.0
+
+
+# Use this to expand the base configurations.
+# E.g. add prometheus annotations to deployment, change service ports, etc.
+# A number of generic patches are available at gitlab.com/ignitionrobotics/continuous-deployment/kubernetes
+# patchesStrategicMerge:
+# - git@gitlab.com:ignitionrobotics/continuous-deployment/kubernetes.git/base/patches/<PATCH>

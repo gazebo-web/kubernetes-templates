@@ -1,0 +1,8 @@
+apiVersion: apps/v1
+kind: ConfigMap
+metadata:
+  name: env-vars
+spec:
+  # Add environment-specific environment variables here.
+  # Note that by default, this config map will be merged with the base config map.
+  # This can be changed in the kustomization.yaml file inside this file's directory.

@@ -1,0 +1,8 @@
+apiVersion: apps/v1
+kind: ConfigMap
+metadata:
+  name: env-vars
+spec:
+  # Add environment variables here.
+  # This file is the base for all environments.
+  # Environment-specific env vars should be defined in the overlays/<ENVIRONMENT> directory.
