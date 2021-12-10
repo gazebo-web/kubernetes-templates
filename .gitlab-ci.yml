@@ -21,6 +21,8 @@ stages:
 deploy_staging:
   stage: deploy
   script:
+  - pwd
+  - ls
   - . overlays/staging.staging.env
   - find . -regex '.+\.ya?ml' -not -iname '.gitlab-ci.yaml' -exec sh -c ' echo = {} =; envsubst < {} | \ tee {}; echo "\n"' \;
 #  - *deploy_kubernetes
