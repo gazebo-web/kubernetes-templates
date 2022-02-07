@@ -31,11 +31,11 @@ deploy_staging:
   - staging
   when: manual
 
-#deploy_production:
-#  stage: deploy
-#  script:
-#  - export OVERLAY=production
-#  - *deploy_kubernetes
-#  tags:
-#  - kubernetes
-#  - production
+deploy_production:
+  stage: deploy
+  script:
+  - export OVERLAY=production
+  - *deploy_kubernetes
+  tags:
+  - kubernetes
+  - production
